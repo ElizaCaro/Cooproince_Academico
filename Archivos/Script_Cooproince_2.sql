@@ -166,6 +166,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `sc_cooproince`.`ROL`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sc_cooproince`.`ROL` (
+  `id_rol` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_rol`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `sc_cooproince`.`USUARIO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sc_cooproince`.`USUARIO` (
@@ -174,14 +185,21 @@ CREATE TABLE IF NOT EXISTS `sc_cooproince`.`USUARIO` (
   `primer_nombre` VARCHAR(45) NOT NULL,
   `segundo_nombre` VARCHAR(45) NULL,
   `primer_apellido` VARCHAR(45) NOT NULL,
-  `segundo_apellido` VARCHAR(45) NOT NULL,
+  `segundo_apellido` VARCHAR(45) NULL,
   `e-mail` VARCHAR(45) NULL,
   `usuario` VARCHAR(45) NOT NULL,
   `contrasena` VARCHAR(65) NOT NULL,
   `crear_usuario` TINYINT(1) NULL,
   `crear_configuracion` TINYINT(1) NULL,
+  `id_rol` INT NOT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC))
+  UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC),
+  INDEX `fk_USUARIO_ROL1_idx` (`id_rol` ASC),
+  CONSTRAINT `fk_USUARIO_ROL1`
+    FOREIGN KEY (`id_rol`)
+    REFERENCES `sc_cooproince`.`ROL` (`id_rol`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -423,6 +441,16 @@ CREATE TABLE IF NOT EXISTS `sc_cooproince`.`DETALLE_INCIDENCIA` (
     REFERENCES `sc_cooproince`.`INCIDENCIA` (`id_incidencia`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sc_cooproince`.`TIPO_MEDIDA`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sc_cooproince`.`TIPO_MEDIDA` (
+  `id_tipo_medida` INT NOT NULL,
+  `nb_tipo_medida` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_tipo_medida`))
 ENGINE = InnoDB;
 
 
