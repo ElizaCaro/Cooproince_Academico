@@ -30,6 +30,7 @@ public class IngresoBD extends javax.swing.JFrame {
             }
             if (tipoUsuario == 1) {
                 /*AUI PUEDO LLAMAR UNA VENTANA*/
+                objventPrinc.setVisible(true);
                 System.out.println("Es Administrador");
             }
             if (tipoUsuario == 2) {
@@ -225,5 +226,6 @@ public class IngresoBD extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 Conectardb objconectardb = new Conectardb();
 Connection objConnection = objconectardb.conexiondb();
+ventanaPrincipal objventPrinc = new ventanaPrincipal();
 
 }
