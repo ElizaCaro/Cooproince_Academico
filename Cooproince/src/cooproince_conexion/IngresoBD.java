@@ -34,6 +34,9 @@ public class IngresoBD extends javax.swing.JFrame {
             }
             if (tipoUsuario == 2) {
                 /*AUI PUEDO LLAMAR UNA VENTANA*/
+                ventanaPrincipal transa = new ventanaPrincipal();
+                transa.setVisible(true);
+                this.setVisible(false);
                 System.out.println("Es Socio");
             }
             if (tipoUsuario != 1 && tipoUsuario != 2) {
