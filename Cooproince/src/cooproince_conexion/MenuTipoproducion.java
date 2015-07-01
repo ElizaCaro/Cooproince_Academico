@@ -29,27 +29,23 @@ public class MenuTipoproducion extends javax.swing.JInternalFrame {
         mostratipoproduccion("");
     }
 
-    
     void mostratipoproduccion(String valor) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Codigo");
         model.addColumn("Tipo");
         TaTiproduccion.setModel(model);
         String[] vec = new String[2];
-        String sql="";
-        
-        if(valor.equals("")){
-             sql ="select * from TIPO_PRODUCCION";
-        }else{
-            sql = "select * from TIPO_PRODUCCION where '"+valor.trim()+"'";
+        String sql = "";
+
+        if (valor.equals("")) {
+            sql = "select * from TIPO_PRODUCCION";
+        } else {
+            sql = "select * from TIPO_PRODUCCION where nb_tipoProduccion = '" + valor.trim() + "'";
         }
-        
-        
-        
 
         try {
             Statement est = objConnection.createStatement();
-            ResultSet rel = est.executeQuery("select * from TIPO_PRODUCCION");
+            ResultSet rel = est.executeQuery(sql);
 
             while (rel.next()) {
                 vec[0] = rel.getString(1);
@@ -63,8 +59,6 @@ public class MenuTipoproducion extends javax.swing.JInternalFrame {
         }
 
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -268,7 +262,7 @@ public class MenuTipoproducion extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       mostratipoproduccion(texbuscar.getText());
+        mostratipoproduccion(texbuscar.getText());
         System.out.println("busca");
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -281,53 +275,57 @@ public class MenuTipoproducion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         int row = TaTiproduccion.getSelectedRow();
-        if(row >=0){
-        cod.setText(TaTiproduccion.getValueAt(row, 0).toString());
-        TipoProduccion.setText(TaTiproduccion.getValueAt(row, 1).toString());
-        
-        }else{
-          JOptionPane.showMessageDialog(null,"No selecciono  una fila");
+        if (row >= 0) {
+            cod.setText(TaTiproduccion.getValueAt(row, 0).toString());
+            TipoProduccion.setText(TaTiproduccion.getValueAt(row, 1).toString());
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
         }
-        
+
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
-        try {
-            // TODO add your handling code here:
-            String sql = "Update TIPO_PRODUCCION  set nb_tipoProduccion = '"+TipoProduccion.getText()+"' where id_tipoProduccion = '"+cod.getText()+"'";
-            PreparedStatement pat = objConnection.prepareStatement(sql);
-            pat.executeUpdate();
-            mostratipoproduccion("");    
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (cod.getText().equals("0") == false) {
+            try {
+                // TODO add your handling code here:
+                String sql = "Update TIPO_PRODUCCION  set nb_tipoProduccion = '" + TipoProduccion.getText() + "' where id_tipoProduccion = '" + cod.getText() + "'";
+                PreparedStatement pat = objConnection.prepareStatement(sql);
+                pat.executeUpdate();
+                mostratipoproduccion("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
+
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         int row = TaTiproduccion.getSelectedRow();
-        if(row >=0){
-            String cod =TaTiproduccion.getValueAt(row, 0).toString();
-            String sql ="Delete from TIPO_PRODUCCION where id_tipoProduccion = '"+cod+"'";
-              PreparedStatement pat;
+        if (row >= 0) {
+            String cod = TaTiproduccion.getValueAt(row, 0).toString();
+            String sql = "Delete from TIPO_PRODUCCION where id_tipoProduccion = '" + cod + "'";
+            PreparedStatement pat;
             try {
                 pat = objConnection.prepareStatement(sql);
                 pat.executeUpdate();
-            mostratipoproduccion("");
+                mostratipoproduccion("");
             } catch (SQLException ex) {
                 Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-          
-        }else{
-          JOptionPane.showMessageDialog(null,"No selecciono  una fila");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
         }
-        
-        
+
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     Conectardb objconectardb = new Conectardb();
