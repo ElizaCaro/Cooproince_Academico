@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Esneldy/Documents/GitHub/Cooproince_Academico/Cooproince/src/cooproince_conexion/MenuTipoproducion.java</file>
             <file>file:/C:/Users/Esneldy/Documents/GitHub/Cooproince_Academico/Cooproince/src/cooproince_conexion/MenuRazas.java</file>
             <file>file:/C:/Users/Esneldy/Documents/GitHub/Cooproince_Academico/Cooproince/src/cooproince_conexion/Conectardb.java</file>
             <file>file:/C:/Users/Esneldy/Documents/GitHub/Cooproince_Academico/Cooproince/src/cooproince_conexion/IngresoBD.java</file>
+=======
+            <file>file:/home/felipe/Cooproince_Academico/Cooproince/src/cooproince_conexion/Menutipousuario.java</file>
+            <file>file:/home/felipe/Cooproince_Academico/Cooproince/src/cooproince_conexion/Menutipoincidencias.java</file>
+            <file>file:/home/felipe/Cooproince_Academico/Cooproince/src/cooproince_conexion/MenuTipoproducion.java</file>
+>>>>>>> d79550ac9dd0ecbad367d0388ecf175ac40796d7
         </group>
     </open-files>
 </project-private>
