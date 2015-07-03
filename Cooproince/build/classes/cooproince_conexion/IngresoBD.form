@@ -121,6 +121,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="usuario_text">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="esneldy.caballero"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuario_textActionPerformed"/>
       </Events>
@@ -134,6 +137,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="contrasena_text">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="q123"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="contrasena_textActionPerformed"/>
       </Events>
