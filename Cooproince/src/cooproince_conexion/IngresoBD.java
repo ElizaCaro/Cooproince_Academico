@@ -16,6 +16,8 @@ public class IngresoBD extends javax.swing.JFrame {
 
     public IngresoBD() {
         initComponents();
+        this.setLocationRelativeTo(null);
+       
     }
 
     public void Acceder(String usua, String pass) {
@@ -30,6 +32,9 @@ public class IngresoBD extends javax.swing.JFrame {
             }
             if (tipoUsuario == 1) {
                 /*AUI PUEDO LLAMAR UNA VENTANA*/
+                /*objventPrinc.setLocationRelativeTo(null); Centro la ventana pincipal*/
+                objventPrinc.setVisible(true);
+                
                 System.out.println("Es Administrador");
             }
             if (tipoUsuario == 2) {
@@ -73,6 +78,7 @@ public class IngresoBD extends javax.swing.JFrame {
         Usuario_label.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         Usuario_label.setText("Usuario");
 
+        usuario_text.setText("esneldy.caballero");
         usuario_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuario_textActionPerformed(evt);
@@ -82,6 +88,7 @@ public class IngresoBD extends javax.swing.JFrame {
         Contraseña_label.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         Contraseña_label.setText("Contraseña");
 
+        contrasena_text.setText("q123");
         contrasena_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contrasena_textActionPerformed(evt);
@@ -167,6 +174,8 @@ public class IngresoBD extends javax.swing.JFrame {
         String usuario=usuario_text.getText();
         String contrasena=contrasena_text.getText();
         Acceder(usuario, contrasena);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_Entrar_buttonActionPerformed
 
     private void Salir_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir_buttonActionPerformed
@@ -228,5 +237,6 @@ public class IngresoBD extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 Conectardb objconectardb = new Conectardb();
 Connection objConnection = objconectardb.conexiondb();
+ventanaPrincipal objventPrinc = new ventanaPrincipal();
 
 }
