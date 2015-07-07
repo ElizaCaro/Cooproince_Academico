@@ -105,6 +105,12 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
 
         nombre_label.setText("Nombre del tipo de producto");
 
+        nombreTipo_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTipo_textActionPerformed(evt);
+            }
+        });
+
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +122,12 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
+            }
+        });
+
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
             }
         });
 
@@ -275,6 +287,14 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void nombreTipo_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTipo_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTipo_textActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
