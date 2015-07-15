@@ -6,7 +6,7 @@
 
 package cooproince_conexion;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -83,8 +83,8 @@ public class MenuUnidadMed extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbMedidas = new javax.swing.JTable();
         buscar_txt = new javax.swing.JTextField();
-        buscar_lbl = new javax.swing.JButton();
-        mostrar_lbl = new javax.swing.JButton();
+        buscar_btn = new javax.swing.JButton();
+        mostrar_btn = new javax.swing.JButton();
 
         modificar.setText("Modificar");
         modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -189,17 +189,17 @@ public class MenuUnidadMed extends javax.swing.JInternalFrame {
         tbMedidas.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(tbMedidas);
 
-        buscar_lbl.setText("Buscar");
-        buscar_lbl.addActionListener(new java.awt.event.ActionListener() {
+        buscar_btn.setText("Buscar");
+        buscar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar_lblActionPerformed(evt);
+                buscar_btnActionPerformed(evt);
             }
         });
 
-        mostrar_lbl.setText("Mostrar Todo");
-        mostrar_lbl.addActionListener(new java.awt.event.ActionListener() {
+        mostrar_btn.setText("Mostrar Todo");
+        mostrar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrar_lblActionPerformed(evt);
+                mostrar_btnActionPerformed(evt);
             }
         });
 
@@ -213,13 +213,11 @@ public class MenuUnidadMed extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buscar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
-                        .addComponent(buscar_lbl)
+                        .addComponent(buscar_btn)
                         .addGap(64, 64, 64)
-                        .addComponent(mostrar_lbl)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
+                        .addComponent(mostrar_btn))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addComponent(meddida_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,11 +228,11 @@ public class MenuUnidadMed extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(meddida_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscar_lbl)
-                    .addComponent(mostrar_lbl))
+                    .addComponent(buscar_btn)
+                    .addComponent(mostrar_btn))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
@@ -260,13 +258,13 @@ public class MenuUnidadMed extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_crear_btnActionPerformed
 
-    private void buscar_lblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_lblActionPerformed
+    private void buscar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_btnActionPerformed
         mostrarDatosMedidas(buscar_txt.getText());
-    }//GEN-LAST:event_buscar_lblActionPerformed
+    }//GEN-LAST:event_buscar_btnActionPerformed
 
-    private void mostrar_lblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_lblActionPerformed
+    private void mostrar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_btnActionPerformed
        mostrarDatosMedidas("");
-    }//GEN-LAST:event_mostrar_lblActionPerformed
+    }//GEN-LAST:event_mostrar_btnActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         int fila = tbMedidas.getSelectedRow();
@@ -309,7 +307,7 @@ public class MenuUnidadMed extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Eliminar;
-    private javax.swing.JButton buscar_lbl;
+    private javax.swing.JButton buscar_btn;
     private javax.swing.JTextField buscar_txt;
     private javax.swing.JTextField codigo_txt;
     private javax.swing.JButton crear_btn;
@@ -320,7 +318,7 @@ public class MenuUnidadMed extends javax.swing.JInternalFrame {
     private javax.swing.JLabel medida_lbl;
     private javax.swing.JTextField medida_txt;
     private javax.swing.JMenuItem modificar;
-    private javax.swing.JButton mostrar_lbl;
+    private javax.swing.JButton mostrar_btn;
     private javax.swing.JTable tbMedidas;
     // End of variables declaration//GEN-END:variables
     Conectardb objConectar = new Conectardb();

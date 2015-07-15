@@ -6,6 +6,12 @@
 
 package cooproince_conexion;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author felipe
@@ -17,6 +23,39 @@ public class MenuRazas extends javax.swing.JInternalFrame {
      */
     public MenuRazas() {
         initComponents();
+        mostrarDatosRazas("");
+        codigo_txt.setVisible(false);
+    }
+    
+    void mostrarDatosRazas(String valor) {
+        
+        String[] vecRegistros = new String[2];
+        String consultaSql="";
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre Raza"); //Estos son los nombres de las Columnas
+        tbRazas.setModel(modelo);
+        
+        if(valor.equals("")){
+            consultaSql = "select * from CATEGORIA";
+        }else{
+            consultaSql= "select * from CATEGORIA where nb_categoria='"+valor.trim()+"'";
+        }
+        
+        try {
+            Statement st = objConexion.createStatement();
+            ResultSet rs = st.executeQuery(consultaSql); //Almacena los datos de la consulta ue se va a realizar
+            while(rs.next()){
+                //Mostrando en la tabla
+              vecRegistros[0]= rs.getString(1);
+              vecRegistros[1]= rs.getString(2);
+              modelo.addRow(vecRegistros);
+            }
+           tbRazas.setModel(modelo); // mostramos los registros
+        } catch (SQLException ex) {
+            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -28,6 +67,37 @@ public class MenuRazas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        Modificar = new javax.swing.JMenuItem();
+        Eliminar = new javax.swing.JMenuItem();
+        jPanel1 = new javax.swing.JPanel();
+        codigo_txt = new javax.swing.JTextField();
+        raza_lbl = new javax.swing.JLabel();
+        raza_txt = new javax.swing.JTextField();
+        crear_btn = new javax.swing.JButton();
+        editar_btn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbRazas = new javax.swing.JTable();
+        buscar_txt = new javax.swing.JTextField();
+        buscar_btn = new javax.swing.JButton();
+        mostrar_btn = new javax.swing.JButton();
+
+        Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(Modificar);
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(Eliminar);
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -35,21 +105,207 @@ public class MenuRazas extends javax.swing.JInternalFrame {
         setTitle("Razas");
         setToolTipText("");
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de Razas"));
+
+        raza_lbl.setText("Raza");
+
+        raza_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raza_txtActionPerformed(evt);
+            }
+        });
+
+        crear_btn.setText("Crear");
+        crear_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crear_btnActionPerformed(evt);
+            }
+        });
+
+        editar_btn.setText("Editar");
+        editar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_btnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(crear_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(raza_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(editar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(raza_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(raza_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(raza_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crear_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        tbRazas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbRazas.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane1.setViewportView(tbRazas);
+
+        buscar_btn.setText("Buscar");
+        buscar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_btnActionPerformed(evt);
+            }
+        });
+
+        mostrar_btn.setText("Mostrar Todo");
+        mostrar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrar_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(buscar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(buscar_btn)
+                        .addGap(78, 78, 78)
+                        .addComponent(mostrar_btn)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscar_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(buscar_btn)
+                    .addComponent(mostrar_btn))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void raza_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raza_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_raza_txtActionPerformed
+
+    private void crear_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_btnActionPerformed
+        try {
+            PreparedStatement pst = objConexion.prepareStatement("insert into CATEGORIA values(?,?)");
+            pst.setInt(1, 0);
+            pst.setString(2, raza_txt.getText());
+            
+            pst.executeUpdate();
+            mostrarDatosRazas(""); // llamamos el metodo aqui para que se muestren los datos que vamos insertando
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_crear_btnActionPerformed
+
+    private void buscar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_btnActionPerformed
+         mostrarDatosRazas(buscar_txt.getText());
+    }//GEN-LAST:event_buscar_btnActionPerformed
+
+    private void mostrar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_btnActionPerformed
+        mostrarDatosRazas("");
+    }//GEN-LAST:event_mostrar_btnActionPerformed
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+         int fila = tbRazas.getSelectedRow();
+        if (fila >= 0) {
+            codigo_txt.setText(tbRazas.getValueAt(fila, 0).toString());
+            raza_txt.setText(tbRazas.getValueAt(fila, 1).toString());
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
+        }
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void editar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_btnActionPerformed
+         try {
+            PreparedStatement pr = objConexion.prepareStatement("UPDATE CATEGORIA set nb_categoria='"+raza_txt.getText()+"' where id_categoria='"+codigo_txt.getText()+"'");
+            pr.executeUpdate();
+            mostrarDatosRazas("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editar_btnActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int fila = tbRazas.getSelectedRow();
+        String cod="";
+             cod = tbRazas.getValueAt(fila, 0).toString(); // Capturando el valor de la fila seleccionada y la columna 0
+        try {
+            PreparedStatement pr = objConexion.prepareStatement("DELETE from CATEGORIA where id_categoria='"+cod+"'");
+            pr.executeUpdate();
+            mostrarDatosRazas("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Modificar;
+    private javax.swing.JButton buscar_btn;
+    private javax.swing.JTextField buscar_txt;
+    private javax.swing.JTextField codigo_txt;
+    private javax.swing.JButton crear_btn;
+    private javax.swing.JButton editar_btn;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mostrar_btn;
+    private javax.swing.JLabel raza_lbl;
+    private javax.swing.JTextField raza_txt;
+    private javax.swing.JTable tbRazas;
     // End of variables declaration//GEN-END:variables
+    Conectardb objConectar = new Conectardb();
+    Connection objConexion = objConectar.conexiondb();
 }
