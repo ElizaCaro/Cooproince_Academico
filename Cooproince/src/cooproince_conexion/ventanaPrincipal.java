@@ -196,6 +196,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menuParametrosAni.add(itemParentesco);
 
         itemEstatus.setText("Estatus");
+        itemEstatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEstatusActionPerformed(evt);
+            }
+        });
         menuParametrosAni.add(itemEstatus);
 
         menuAnimales.add(menuParametrosAni);
@@ -460,6 +465,13 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void menuAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAdministracionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuAdministracionActionPerformed
+
+    private void itemEstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstatusActionPerformed
+       MenuEstatus mtp;
+       mtp = new MenuEstatus();
+        Paintern.add(mtp);
+        mtp.show();
+    }//GEN-LAST:event_itemEstatusActionPerformed
 
     /**
      * @param args the command line arguments
