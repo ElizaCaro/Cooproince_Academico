@@ -278,11 +278,12 @@ public class MenuProductos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(codigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(codigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
@@ -369,7 +370,6 @@ public class MenuProductos extends javax.swing.JInternalFrame {
         model.addColumn("Codigo de producto");
         model.addColumn("Categoria");
         model.addColumn("Medida");
-        model.addColumn("Segundo apellido");
         model.addColumn("Descripcion");
         model.addColumn("Precio");
         model.addColumn("Cantidad");
@@ -438,6 +438,7 @@ public class MenuProductos extends javax.swing.JInternalFrame {
             jTextArea1.setText("");
             jTextField1.setText("");
             cantidad.setText("");
+            codigo_txt.setText("");
             mostrar(""); // llamamos el metodo aqui para que se muestren los datos que vamos insertando
 
         } catch (SQLException ex) {
@@ -498,6 +499,7 @@ public class MenuProductos extends javax.swing.JInternalFrame {
             cantidad.setText("");
             jComboBox1.setSelectedIndex(0);
             jComboBox1.setSelectedIndex(0);
+            codigo_txt.setText("");
             mostrar("");
         } catch (SQLException ex) {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);

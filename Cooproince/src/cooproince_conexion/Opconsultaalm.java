@@ -31,8 +31,7 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
 
     public Opconsultaalm() {
         initComponents();
-        
-        
+
         String sql = "select * from PRODUCTO";
         String vec[] = new String[2];
 
@@ -49,9 +48,9 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         sql = "select * from MEDIDAS";
-        vec= new String[2];
+        vec = new String[2];
 
         try {
             Statement est = objConexion.createStatement();
@@ -59,16 +58,14 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
 
             while (rel.next()) {
                 vec[0] = rel.getString(1);
-                vec[1] = rel.getString(8);
+                vec[1] = rel.getString(2);
                 jComboBox2.addItem(vec[1]);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         mostrar("");
     }
 
@@ -341,14 +338,16 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
             int minutes = calendar.get(Calendar.MINUTE);
             int seconds = calendar.get(Calendar.SECOND);
             java.sql.Time tim;
-            tim = new java.sql.Time(hours,minutes,seconds);
+            tim = new java.sql.Time(hours, minutes, seconds);
             pst.setTime(6, tim);
             pst.setInt(7, jComboBox3.getSelectedIndex());
-            jTextField2.setText("0");
             jComboBox1.setSelectedIndex(0);
             jComboBox2.setSelectedIndex(0);
             jComboBox3.setSelectedIndex(0);
-
+            codigo_txt.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
 
             pst.executeUpdate();
 
@@ -364,8 +363,7 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
     private void editar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_btnActionPerformed
 
         try {
-            
-            
+
             int a = jComboBox1.getSelectedIndex();
             a++;
             String sql = "UPDATE ALMACEN set 	id_producto ='" + String.valueOf(a) + "' where id_almacen ='" + codigo_txt.getText() + "'";
@@ -378,15 +376,21 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
             pr = objConexion.prepareStatement(sql);
             pr.executeUpdate();
 
-            
-            sql = "UPDATE ALMACEN set 	cantidad_pro ='" + jTextField2.getText() + "' where id_almacen ='" + codigo_txt.getText() + "'";
+            sql = "UPDATE ALMACEN set 	cantidad_prod ='" + jTextField2.getText() + "' where id_almacen ='" + codigo_txt.getText() + "'";
             pr = objConexion.prepareStatement(sql);
             pr.executeUpdate();
 
-            
             sql = "UPDATE ALMACEN set 	unidades_prod ='" + String.valueOf(jComboBox3.getSelectedIndex()) + "' where id_almacen ='" + codigo_txt.getText() + "'";
             pr = objConexion.prepareStatement(sql);
             pr.executeUpdate();
+
+            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jComboBox3.setSelectedIndex(0);
+            codigo_txt.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
 
             mostrar("");
         } catch (SQLException ex) {
@@ -402,9 +406,9 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
             String[] vec = new String[7];
             String sql = "";
             String valor = Tabla.getValueAt(row, 0).toString();
-            System.out.println("cod  "+valor);
+            System.out.println("cod  " + valor);
             vec = new String[11];
-                System.out.println(valor);
+            System.out.println(valor);
             if (valor.equals("")) {
                 sql = "select * from ALMACEN";
             } else {
@@ -423,19 +427,17 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
                     vec[4] = rel.getString(5);
                     vec[5] = rel.getString(6);
                     vec[6] = rel.getString(7);
-                    
+
                 }
-                
+
                 codigo_txt.setText(vec[0]);
-               jComboBox1.setSelectedIndex(Integer.parseInt(vec[1])-1);
-               jComboBox2.setSelectedIndex(Integer.parseInt(vec[2])-1);
-               jTextField2.setText(vec[3]);
-               jTextField2.setText(vec[3]);
-               jTextField3.setText(vec[4]);
-               jTextField4.setText(vec[5]);
-               jComboBox2.setSelectedIndex(Integer.parseInt(vec[6]));
-                
-                
+                jComboBox1.setSelectedIndex(Integer.parseInt(vec[1]) - 1);
+                jComboBox2.setSelectedIndex(Integer.parseInt(vec[2]) - 1);
+                jTextField2.setText(vec[3]);
+                jTextField2.setText(vec[3]);
+                jTextField3.setText(vec[4]);
+                jTextField4.setText(vec[5]);
+                jComboBox2.setSelectedIndex(Integer.parseInt(vec[6]));
 
             } catch (SQLException ex) {
                 Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
@@ -444,8 +446,8 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No selecciono  una fila");
         }
-        
-        
+
+
     }//GEN-LAST:event_EditarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -497,8 +499,7 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void mostrar(String valor) {
-        
-        
+
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Codigo");
         model.addColumn("Producto");
@@ -507,7 +508,7 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
         model.addColumn("Fecha de modificacion");
         model.addColumn("Hora de modificacion");
         model.addColumn("Tipo de operacion");
-        
+
         Tabla.setModel(model);
         String[] vec = new String[7];
         String sql = "";
@@ -515,7 +516,7 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
         if (valor.equals("")) {
             sql = "select * from ALMACEN";
         } else {
-            valor = String.valueOf(Integer.parseInt(valor)+1);
+            valor = String.valueOf(Integer.parseInt(valor) + 1);
             sql = "select * from ALMACEN where id_producto= '" + valor.trim() + "'";
         }
 
@@ -531,7 +532,7 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
                 vec[4] = rel.getString(5);
                 vec[5] = rel.getString(6);
                 vec[6] = rel.getString(7);
-               
+
                 model.addRow(vec);
             }
             Tabla.setModel(model);
@@ -540,7 +541,5 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
             Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    
-    
     }
 }
