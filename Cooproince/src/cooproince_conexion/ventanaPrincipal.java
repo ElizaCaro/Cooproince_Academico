@@ -9,6 +9,8 @@ import javax.swing.JMenu;
 public class ventanaPrincipal extends javax.swing.JFrame {
 
     IngresoBD objIngreso;
+    public String usuario;
+    public int idusuario;
     
     public ventanaPrincipal(IngresoBD objdb) {
         initComponents();
@@ -85,6 +87,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menuInicio.add(itemSalir);
 
         itemPerfilusuario.setText("Perfil de Usuario");
+        itemPerfilusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemPerfilusuarioActionPerformed(evt);
+            }
+        });
         menuInicio.add(itemPerfilusuario);
 
         menuPrincipal.add(menuInicio);
@@ -472,6 +479,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         Paintern.add(mtp);
         mtp.show();
     }//GEN-LAST:event_itemEstatusActionPerformed
+
+    private void itemPerfilusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPerfilusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemPerfilusuarioActionPerformed
 
     /**
      * @param args the command line arguments

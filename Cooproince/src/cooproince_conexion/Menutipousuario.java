@@ -74,6 +74,7 @@ public class Menutipousuario extends javax.swing.JInternalFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cod = new javax.swing.JTextField();
@@ -330,10 +331,10 @@ public class Menutipousuario extends javax.swing.JInternalFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        int row = Tabla.getSelectedRow();
+      int row = Tabla.getSelectedRow();
         if (row >= 0) {
             String cod = Tabla.getValueAt(row, 0).toString();
-            String sql = "Delete from TIPO_PRODUCCION where id_tipoProduccion = '" + cod + "'";
+            String sql = "Delete from ROL where id_rol = '" + cod + "'";
             PreparedStatement pat;
             try {
                 pat = objConnection.prepareStatement(sql);
@@ -368,6 +369,7 @@ public class Menutipousuario extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nombre;

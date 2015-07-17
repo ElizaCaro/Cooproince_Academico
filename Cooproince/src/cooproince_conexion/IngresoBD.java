@@ -30,6 +30,8 @@ public class IngresoBD extends javax.swing.JFrame {
 
     public void Acceder(String usua, String pass) {
         int tipoUsuario = 0;
+        int idUsuario = 0;
+        String usuario = null;
         String consSql = "SELECT * FROM USUARIO WHERE usuario='" + usua + "' && contrasena='" + pass + "'";
         try {
             Statement st = objConnection.createStatement();
@@ -37,18 +39,24 @@ public class IngresoBD extends javax.swing.JFrame {
             while (rs.next())//ver datos que se capturaron de la consulta
             {
                 tipoUsuario = rs.getInt("id_rol"); /*aqui capturamos el tipo de usuario*/
+                idUsuario = rs.getInt("id_usuario");
+                usuario = rs.getNString("usuario");
+                
             }
             if (tipoUsuario == 1) {
                 /*AUI PUEDO LLAMAR UNA VENTANA*/
                 objventPrinc.setVisible(true);
                 objventPrinc.getMenuAdministracion().setVisible(true );
+                objventPrinc.idusuario= idUsuario;
+                objventPrinc.usuario= usuario;
                 System.out.println("Es Administrador");
             }
             if (tipoUsuario == 2) {
                 /*AUI PUEDO LLAMAR UNA VENTANA*/
                 objventPrinc.setVisible(true);
                 objventPrinc.getMenuAdministracion().setVisible(false);
-                
+                objventPrinc.idusuario= idUsuario;
+                objventPrinc.usuario= usuario;
                 
                 System.out.println("Es Socio");
             }

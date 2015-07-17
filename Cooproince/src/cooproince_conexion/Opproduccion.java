@@ -6,17 +6,75 @@
 
 package cooproince_conexion;
 
+import java.sql.Connection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author felipe
  */
 public class Opproduccion extends javax.swing.JInternalFrame {
 
+    
+    Conectardb objConectar = new Conectardb();
+    Connection objConexion = objConectar.conexiondb();
+    
+    
     /**
      * Creates new form Opproduccion
      */
     public Opproduccion() {
         initComponents();
+        
+        String sql = "select * from TIPO_PRODUCCION";
+        String vec[] = new String[2];
+
+        try {
+            Statement est = objConexion.createStatement();
+            ResultSet rel = est.executeQuery(sql);
+
+            while (rel.next()) {
+                vec[0] = rel.getString(1);
+                vec[1] = rel.getString(2);
+                jComboBox1.addItem(vec[1]);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        sql = "select * from USUARIO";
+        vec= new String[2];
+
+        try {
+            Statement est = objConexion.createStatement();
+            ResultSet rel = est.executeQuery(sql);
+
+            while (rel.next()) {
+                vec[0] = rel.getString(1);
+                vec[1] = rel.getString(8);
+                jComboBox2.addItem(vec[1]);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        
+        
+       
+        mostrar("");
+        
     }
 
     /**
@@ -28,27 +86,486 @@ public class Opproduccion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        Editar = new javax.swing.JMenuItem();
+        ELiminar = new javax.swing.JMenuItem();
+        panel = new javax.swing.JPanel();
+        medida_lbl = new javax.swing.JLabel();
+        produccion = new javax.swing.JTextField();
+        codigo_txt = new javax.swing.JTextField();
+        crear_btn = new javax.swing.JButton();
+        editar_btn = new javax.swing.JButton();
+        medida_lbl1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        Categoria = new javax.swing.JLabel();
+        codigo1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        buscar = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
+
+        Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(Editar);
+
+        ELiminar.setText("Eliminar");
+        ELiminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ELiminarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ELiminar);
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Produccion");
+        setTitle("Actividades");
+
+        panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Actividad"));
+
+        medida_lbl.setText("Asunto");
+
+        produccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                produccionActionPerformed(evt);
+            }
+        });
+
+        codigo_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigo_txtActionPerformed(evt);
+            }
+        });
+
+        crear_btn.setText("Crear");
+        crear_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crear_btnActionPerformed(evt);
+            }
+        });
+
+        editar_btn.setText("Editar");
+        editar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_btnActionPerformed(evt);
+            }
+        });
+
+        medida_lbl1.setText("Fecha de Registro");
+
+        Categoria.setText("Categoria");
+
+        codigo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigo1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Duracion");
+
+        jTextField1.setColumns(10);
+
+        jLabel2.setText("Responsable");
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(crear_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(medida_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(produccion, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(medida_lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(codigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(34, 34, 34)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(editar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(Categoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Categoria)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(medida_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(produccion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(medida_lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(codigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(58, 58, 58)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(0, 13, Short.MAX_VALUE)
+                        .addComponent(editar_btn))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(crear_btn)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+
+        buscar.setColumns(10);
+
+        jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Motrar todo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        Tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        Tabla.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(Tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void produccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_produccionActionPerformed
+
+    private void codigo_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_txtActionPerformed
+
+    }//GEN-LAST:event_codigo_txtActionPerformed
+
+    private void crear_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_btnActionPerformed
+        try {
+            PreparedStatement pst = objConexion.prepareStatement("insert into PRODUCCION values(?,?,?,?,?,?,?,?)");
+            pst.setInt(1, 0);
+            pst.setString(2, produccion.getText());
+            int a = jComboBox1.getSelectedIndex();
+            a++;
+            pst.setInt(3, a);
+            java.util.Date var = new java.util.Date();
+            Date date;
+            date = new Date(var.getTime());
+            a = jComboBox2.getSelectedIndex();
+            a++;
+            pst.setInt(4, 0);
+            pst.setInt(5, 0);
+            pst.setInt(6, a);
+            pst.setDate(7, date);
+            pst.setString(8,jTextField1.getText());
+            
+                pst.executeUpdate();
+       
+            
+            
+             produccion.setText("");
+             jComboBox1.setSelectedIndex(0);
+             jTextField1.setText("");
+            mostrar(""); // llamamos el metodo aqui para que se muestren los datos que vamos insertando
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        mostrar("");
+
+    }//GEN-LAST:event_crear_btnActionPerformed
+
+    
+    public void mostrar(String valor){
+    
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Codigo");
+        model.addColumn("Asunto");
+        model.addColumn("Categoria");
+        model.addColumn("Responsable");
+        model.addColumn("Fecha de registro");
+        model.addColumn("Duracion");
+        Tabla.setModel(model);
+        String[] vec = new String[6];
+        String sql = "";
+
+        if (valor.equals("")) {
+            sql = "select * from PRODUCCION";
+        } else {
+            sql = "select * from PRODUCCION where nb_produccion= '" + valor.trim() + "'";
+        }
+
+        try {
+            Statement est = objConexion.createStatement();
+            ResultSet rel = est.executeQuery(sql);
+
+            while (rel.next()) {
+                vec[0] = rel.getString(1);
+                vec[1] = rel.getString(2);
+                vec[2] = rel.getString(3);
+                vec[3] = rel.getString(6);
+                vec[4] = rel.getString(7);
+                vec[5] = rel.getString(8);
+               
+                model.addRow(vec);
+            }
+            Tabla.setModel(model);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    
+    
+    }
+    
+    private void editar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_btnActionPerformed
+
+        try {
+            String sql="UPDATE PRODUCCION set nb_produccion ='"+produccion.getText()+"' where id_produccion ='"+codigo_txt.getText()+"'";
+            PreparedStatement pr = objConexion.prepareStatement(sql);
+            pr.executeUpdate();
+
+            int a = jComboBox1.getSelectedIndex();
+            a++; 
+            sql="UPDATE PRODUCCION set id_tipoProduccion ='"+String.valueOf(a)+"' where id_produccion ='"+codigo_txt.getText()+"'";
+            pr = objConexion.prepareStatement(sql);
+            pr.executeUpdate();
+
+          
+            System.out.println(a);
+            a = jComboBox2.getSelectedIndex();
+            a++;
+            sql="UPDATE PRODUCCION set 	id_usuario ='"+String.valueOf(a)+"' where id_produccion ='"+codigo_txt.getText()+"'";
+            pr = objConexion.prepareStatement(sql);
+            pr.executeUpdate();
+
+                
+            sql="UPDATE PRODUCCION set duracion_actividad ='"+jTextField1.getText()+"' where id_produccion ='"+codigo_txt.getText()+"'";
+            pr = objConexion.prepareStatement(sql);
+            pr.executeUpdate();
+
+            produccion.setText("");
+            codigo1.setText("");
+            jTextField1.setText("");
+            jComboBox1.setSelectedIndex(0);
+            jComboBox1.setSelectedIndex(0);
+            mostrar("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editar_btnActionPerformed
+
+    private void codigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigo1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        mostrar(buscar.getText());
+        System.out.println("busca");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        mostrar("");
+        buscar.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        
+                  // TODO add your handling code here:
+       int row = Tabla.getSelectedRow();
+        if (row >= 0) {
+
+            String[] vec = new String[8];
+            String sql = "";
+            String valor = Tabla.getValueAt(row, 0).toString();
+            System.out.println("cod  "+valor);
+            vec = new String[11];
+                System.out.println(valor);
+            if (valor.equals("")) {
+                sql = "select * from PRODUCCION";
+            } else {
+                sql = "select * from PRODUCCION where id_produccion = '" + valor.trim() + "'";
+            }
+
+            try {
+                Statement est = objConexion.createStatement();
+                ResultSet rel = est.executeQuery(sql);
+
+                while (rel.next()) {
+                    vec[0] = rel.getString(1);
+                    vec[1] = rel.getString(2);
+                    vec[2] = rel.getString(3);
+                    vec[3] = rel.getString(4);
+                    vec[4] = rel.getString(5);
+                    vec[5] = rel.getString(6);
+                    vec[6] = rel.getString(7);
+                    vec[7] = rel.getString(8);
+                }
+                
+                codigo_txt.setText(vec[0]);
+                produccion.setText(vec[1]);
+                int aux = Integer.parseInt(vec[2]);
+                aux--;
+                jComboBox1.setSelectedIndex(aux);
+                aux = Integer.parseInt(vec[5]);
+                aux--;
+                jComboBox2.setSelectedIndex(aux);
+                codigo1.setText(vec[6]);
+                jTextField1.setText(vec[7]);
+                
+                
+                
+
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
+        }
+        
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void ELiminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ELiminarActionPerformed
+        // TODO add your handling code here:
+             int row = Tabla.getSelectedRow();
+        if (row >= 0) {
+            String cod = Tabla.getValueAt(row, 0).toString();
+            String sql = "Delete from PRODUCCION where id_producCION = '" + cod + "'";
+            PreparedStatement pat;
+            try {
+                pat = objConexion.prepareStatement(sql);
+                pat.executeUpdate();
+                mostrar("");
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
+        }
+    
+        
+        
+    }//GEN-LAST:event_ELiminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Categoria;
+    private javax.swing.JMenuItem ELiminar;
+    private javax.swing.JMenuItem Editar;
+    private javax.swing.JTable Tabla;
+    private javax.swing.JTextField buscar;
+    private javax.swing.JTextField codigo1;
+    private javax.swing.JTextField codigo_txt;
+    private javax.swing.JButton crear_btn;
+    private javax.swing.JButton editar_btn;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel medida_lbl;
+    private javax.swing.JLabel medida_lbl1;
+    private javax.swing.JPanel panel;
+    private javax.swing.JTextField produccion;
     // End of variables declaration//GEN-END:variables
 }
