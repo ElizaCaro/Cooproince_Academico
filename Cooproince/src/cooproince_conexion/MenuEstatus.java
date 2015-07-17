@@ -7,39 +7,42 @@
 package cooproince_conexion;
 
 import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author felipe
+ * @author Esneldy
  */
-public class MenuParentesco extends javax.swing.JInternalFrame {
+public class MenuEstatus extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form MenuParentesco
+     * Creates new form MenuEstatus
      */
-    public MenuParentesco() {
+    public MenuEstatus() {
         initComponents();
-        mostrarDatosParentesco("");
-        codigo_txt.setVisible(false);
+         mostrarDatosEstatus("");
+         codigo_txt.setVisible(false);
     }
-    
-     void mostrarDatosParentesco(String valor) {
+
+    void mostrarDatosEstatus(String valor) {
         
         String[] vecRegistros = new String[2];
         String consultaSql="";
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre Parentesco"); //Estos son los nombres de las Columnas
-        tb_parentesco.setModel(modelo);
+        modelo.addColumn("Nombre Estatus"); //Estos son los nombres de las Columnas
+        tbEstatus.setModel(modelo);
         
         if(valor.equals("")){
-            consultaSql = "select * from TIPO_PARENTESCO";
+            consultaSql = "select * from ESTATUS";
         }else{
-            consultaSql= "select * from TIPO_PARENTESCO where nb_tipoParentesco='"+valor.trim()+"'";
+            consultaSql= "select * from ESTATUS where nb_estatus='"+valor.trim()+"'";
         }
         
         try {
@@ -51,12 +54,11 @@ public class MenuParentesco extends javax.swing.JInternalFrame {
               vecRegistros[1]= rs.getString(2);
               modelo.addRow(vecRegistros);
             }
-           tb_parentesco.setModel(modelo); // mostramos los registros
+           tbEstatus.setModel(modelo); // mostramos los registros
         } catch (SQLException ex) {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,15 +73,15 @@ public class MenuParentesco extends javax.swing.JInternalFrame {
         Eliminar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         codigo_txt = new javax.swing.JTextField();
-        parentesco_lbl = new javax.swing.JLabel();
-        parentesco_txt = new javax.swing.JTextField();
+        estatus_lbl = new javax.swing.JLabel();
+        estatus_txt = new javax.swing.JTextField();
         crear_btn = new javax.swing.JButton();
         editar_btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_parentesco = new javax.swing.JTable();
+        tbEstatus = new javax.swing.JTable();
         buscar_txt = new javax.swing.JTextField();
-        buscar_btn = new javax.swing.JButton();
-        mostrar_btn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,11 +103,11 @@ public class MenuParentesco extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Parentesco");
+        setTitle("Estatus");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de Parentesco"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de Estatus"));
 
-        parentesco_lbl.setText("Parentesco");
+        estatus_lbl.setText("Estatus");
 
         crear_btn.setText("Crear");
         crear_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,37 +128,37 @@ public class MenuParentesco extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(parentesco_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(crear_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(parentesco_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(crear_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editar_btn)
+                        .addGap(40, 40, 40))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(editar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(estatus_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estatus_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(parentesco_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parentesco_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(estatus_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estatus_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(crear_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                    .addComponent(crear_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        tb_parentesco.setModel(new javax.swing.table.DefaultTableModel(
+        tbEstatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -164,20 +166,20 @@ public class MenuParentesco extends javax.swing.JInternalFrame {
 
             }
         ));
-        tb_parentesco.setComponentPopupMenu(jPopupMenu1);
-        jScrollPane1.setViewportView(tb_parentesco);
+        tbEstatus.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane1.setViewportView(tbEstatus);
 
-        buscar_btn.setText("Buscar");
-        buscar_btn.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar_btnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        mostrar_btn.setText("Mostrar Todo");
-        mostrar_btn.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Mostrar Todo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrar_btnActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -191,85 +193,86 @@ public class MenuParentesco extends javax.swing.JInternalFrame {
                         .addGap(113, 113, 113)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buscar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
-                                .addComponent(buscar_btn)
-                                .addGap(67, 67, 67)
-                                .addComponent(mostrar_btn)))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addComponent(buscar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jButton1)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscar_btn)
-                    .addComponent(mostrar_btn))
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(buscar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void crear_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_btnActionPerformed
-        try {
-            PreparedStatement pst = objConexion.prepareStatement("insert into TIPO_PARENTESCO values(?,?)");
+         try {
+            PreparedStatement pst = objConexion.prepareStatement("insert into ESTATUS values(?,?)");
             pst.setInt(1, 0);
-            pst.setString(2, parentesco_txt.getText());
+            pst.setString(2, estatus_txt.getText());
+            
             pst.executeUpdate();
-            mostrarDatosParentesco(""); // llamamos el metodo aqui para que se muestren los datos que vamos insertando
+            mostrarDatosEstatus(""); // llamamos el metodo aqui para que se muestren los datos que vamos insertando
 
         } catch (SQLException ex) {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_crear_btnActionPerformed
 
-    private void editar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_btnActionPerformed
-        try {
-            PreparedStatement pr = objConexion.prepareStatement("UPDATE TIPO_PARENTESCO set nb_tipoParentesco='"+parentesco_txt.getText()+"' where id_tipoParentesco='"+codigo_txt.getText()+"'");
-            pr.executeUpdate();
-            mostrarDatosParentesco("");
-        } catch (SQLException ex) {
-            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_editar_btnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        mostrarDatosEstatus(buscar_txt.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void buscar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_btnActionPerformed
-        mostrarDatosParentesco(buscar_txt.getText());
-    }//GEN-LAST:event_buscar_btnActionPerformed
-
-    private void mostrar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_btnActionPerformed
-        mostrarDatosParentesco("");
-    }//GEN-LAST:event_mostrar_btnActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        mostrarDatosEstatus("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        int fila = tb_parentesco.getSelectedRow();
+        int fila = tbEstatus.getSelectedRow();
         if (fila >= 0) {
-            codigo_txt.setText(tb_parentesco.getValueAt(fila, 0).toString());
-            parentesco_txt.setText(tb_parentesco.getValueAt(fila, 1).toString());
+            codigo_txt.setText(tbEstatus.getValueAt(fila, 0).toString());
+            estatus_txt.setText(tbEstatus.getValueAt(fila, 1).toString());
 
         } else {
             JOptionPane.showMessageDialog(null, "No selecciono  una fila");
         }
     }//GEN-LAST:event_ModificarActionPerformed
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int fila = tb_parentesco.getSelectedRow();
-        String cod="";
-             cod = tb_parentesco.getValueAt(fila, 0).toString(); // Capturando el valor de la fila seleccionada y la columna 0
+    private void editar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_btnActionPerformed
         try {
-            PreparedStatement pr = objConexion.prepareStatement("DELETE from TIPO_PARENTESCO where id_tipoParentesco='"+cod+"'");
+            PreparedStatement pr = objConexion.prepareStatement("UPDATE ESTATUS set nb_estatus='"+estatus_txt.getText()+"' where id_estatus='"+codigo_txt.getText()+"'");
             pr.executeUpdate();
-            mostrarDatosParentesco("");
+            mostrarDatosEstatus("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editar_btnActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int fila = tbEstatus.getSelectedRow();
+        String cod="";
+             cod = tbEstatus.getValueAt(fila, 0).toString(); // Capturando el valor de la fila seleccionada y la columna 0
+        try {
+            PreparedStatement pr = objConexion.prepareStatement("DELETE from ESTATUS where id_estatus='"+cod+"'");
+            pr.executeUpdate();
+            mostrarDatosEstatus("");
         } catch (SQLException ex) {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -279,18 +282,18 @@ public class MenuParentesco extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Eliminar;
     private javax.swing.JMenuItem Modificar;
-    private javax.swing.JButton buscar_btn;
     private javax.swing.JTextField buscar_txt;
     private javax.swing.JTextField codigo_txt;
     private javax.swing.JButton crear_btn;
     private javax.swing.JButton editar_btn;
+    private javax.swing.JLabel estatus_lbl;
+    private javax.swing.JTextField estatus_txt;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton mostrar_btn;
-    private javax.swing.JLabel parentesco_lbl;
-    private javax.swing.JTextField parentesco_txt;
-    private javax.swing.JTable tb_parentesco;
+    private javax.swing.JTable tbEstatus;
     // End of variables declaration//GEN-END:variables
     Conectardb objConectar = new Conectardb();
     Connection objConexion = objConectar.conexiondb();

@@ -98,6 +98,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="itemProductos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Productos"/>
+<<<<<<< HEAD
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemProductosActionPerformed"/>
@@ -108,6 +109,18 @@
                     <Property name="text" type="java.lang.String" value="Actividades"/>
                   </Properties>
                   <Events>
+=======
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemProductosActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="itemActividades">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Actividades"/>
+                  </Properties>
+                  <Events>
+>>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemActividadesActionPerformed"/>
                   </Events>
                 </MenuItem>
@@ -151,6 +164,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="itemRazas">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Razas"/>
+<<<<<<< HEAD
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRazasActionPerformed"/>
@@ -162,6 +176,27 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemParentescoActionPerformed"/>
+=======
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRazasActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="itemParentesco">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Parentescos"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemParentescoActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="itemEstatus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Estatus"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemEstatusActionPerformed"/>
+>>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itemEstatus">
