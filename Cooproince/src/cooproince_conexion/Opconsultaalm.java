@@ -348,7 +348,7 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
             jTextField2.setText("");
             jTextField3.setText("");
             jTextField4.setText("");
-
+            
             pst.executeUpdate();
 
             mostrar(""); // llamamos el metodo aqui para que se muestren los datos que vamos insertando
