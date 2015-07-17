@@ -172,15 +172,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menuAlmacen.add(itemOpealmacen);
 
         menuProduccion.add(menuAlmacen);
-<<<<<<< HEAD
 
         menuPrincipal.add(menuProduccion);
 
-=======
-
-        menuPrincipal.add(menuProduccion);
-
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
         menuAnimales.setText("Animales");
 
         menuParametrosAni.setText("Parametros");
@@ -202,14 +196,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menuParametrosAni.add(itemParentesco);
 
         itemEstatus.setText("Estatus");
-<<<<<<< HEAD
-=======
         itemEstatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemEstatusActionPerformed(evt);
             }
         });
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
         menuParametrosAni.add(itemEstatus);
 
         menuAnimales.add(menuParametrosAni);
@@ -474,8 +465,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void menuAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAdministracionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuAdministracionActionPerformed
-<<<<<<< HEAD
-=======
 
     private void itemEstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstatusActionPerformed
        MenuEstatus mtp;
@@ -483,7 +472,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         Paintern.add(mtp);
         mtp.show();
     }//GEN-LAST:event_itemEstatusActionPerformed
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
 
     /**
      * @param args the command line arguments

@@ -58,15 +58,9 @@
                   <Group type="102" attributes="0">
                       <Component id="buscar_txt" min="-2" pref="112" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="buscar_lbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                      <Component id="mostrar_lbl" min="-2" max="-2" attributes="0"/>
-=======
                       <Component id="buscar_btn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Component id="mostrar_btn" min="-2" max="-2" attributes="0"/>
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
                   </Group>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -84,19 +78,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="meddida_lbl" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-              <EmptySpace pref="45" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buscar_txt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buscar_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mostrar_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-=======
               <EmptySpace pref="49" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buscar_txt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buscar_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mostrar_btn" alignment="3" min="-2" max="-2" attributes="0"/>
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="92" max="-2" attributes="0"/>
@@ -228,35 +214,20 @@
     </Container>
     <Component class="javax.swing.JTextField" name="buscar_txt">
     </Component>
-<<<<<<< HEAD
-    <Component class="javax.swing.JButton" name="buscar_lbl">
-=======
     <Component class="javax.swing.JButton" name="buscar_btn">
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
-<<<<<<< HEAD
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscar_lblActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="mostrar_lbl">
-=======
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscar_btnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="mostrar_btn">
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar Todo"/>
       </Properties>
       <Events>
-<<<<<<< HEAD
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrar_lblActionPerformed"/>
-=======
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrar_btnActionPerformed"/>
->>>>>>> a833121f1af46a8bdc82b00afac9f1e2bfecafa1
       </Events>
     </Component>
   </SubComponents>
