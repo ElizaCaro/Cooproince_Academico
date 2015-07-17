@@ -40,9 +40,9 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
         tbTipoProductos.setModel(modelo);
         
         if(valor.equals("")){
-            consultaSql = "select * from categoria_producto";
+            consultaSql = "select * from CATEGORIA_PRODUCTO";
         }else{
-            consultaSql= "select * from categoria_producto where nb_categoriaProd='"+valor.trim()+"'";
+            consultaSql= "select * from CATEGORIA_PRODUCTO where nb_categoriaProd='"+valor.trim()+"'";
         }
         
         try {
@@ -105,6 +105,12 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
 
         nombre_label.setText("Nombre del tipo de producto");
 
+        nombreTipo_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTipo_textActionPerformed(evt);
+            }
+        });
+
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +122,12 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
+            }
+        });
+
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
             }
         });
 
@@ -224,7 +236,7 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
             pst.setString(2, nombreTipo_text.getText());
             pst.executeUpdate();
             mostrarDatosTipoProductos(""); // llamamos el metodo aqui para ue se muestren los datos que vamos insertando
-
+            nombreTipo_text.setText("");
         } catch (SQLException ex) {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -251,8 +263,10 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            PreparedStatement pr = objConexion.prepareStatement("UPDATE categoria_producto set nb_categoriaProd='"+nombreTipo_text.getText()+"' where id_categoriaProd='"+txtCodigo.getText()+"'");
+            PreparedStatement pr = objConexion.prepareStatement("UPDATE CATEGORIA_PRODUCTO set nb_categoriaProd='"+nombreTipo_text.getText()+"' where id_categoriaProd='"+txtCodigo.getText()+"'");
             pr.executeUpdate();
+            txtCodigo.setText("");
+            nombreTipo_text.setText("");
             mostrarDatosTipoProductos("");
         } catch (SQLException ex) {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -268,13 +282,21 @@ public class Menutipoproducto extends javax.swing.JInternalFrame {
         
        
         try {
-            PreparedStatement pr = objConexion.prepareStatement("delete from categoria_producto where id_categoriaProd='"+cod+"'");
+            PreparedStatement pr = objConexion.prepareStatement("delete from CATEGORIA_PRODUCTO where id_categoriaProd='"+cod+"'");
             pr.executeUpdate();
             mostrarDatosTipoProductos("");
         } catch (SQLException ex) {
             Logger.getLogger(Menutipoproducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void nombreTipo_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTipo_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTipo_textActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

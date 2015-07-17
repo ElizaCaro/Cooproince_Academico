@@ -14,9 +14,17 @@ import javax.swing.JOptionPane;
 
 public class IngresoBD extends javax.swing.JFrame {
 
+     Conectardb objconectardb;
+     Connection objConnection;
+     ventanaPrincipal objventPrinc;
+    
     public IngresoBD() {
         initComponents();
         this.setLocationRelativeTo(null);
+       objconectardb = new Conectardb();
+       objConnection = objconectardb.conexiondb();
+        System.out.println("nbvcngv gvcg v cgh");
+       objventPrinc = new ventanaPrincipal(this);
        
     }
 
@@ -32,16 +40,16 @@ public class IngresoBD extends javax.swing.JFrame {
             }
             if (tipoUsuario == 1) {
                 /*AUI PUEDO LLAMAR UNA VENTANA*/
-                /*objventPrinc.setLocationRelativeTo(null); Centro la ventana pincipal*/
                 objventPrinc.setVisible(true);
-                
+                objventPrinc.getMenuAdministracion().setVisible(true );
                 System.out.println("Es Administrador");
             }
             if (tipoUsuario == 2) {
                 /*AUI PUEDO LLAMAR UNA VENTANA*/
-                ventanaPrincipal transa = new ventanaPrincipal();
-                transa.setVisible(true);
-                this.setVisible(false);
+                objventPrinc.setVisible(true);
+                objventPrinc.getMenuAdministracion().setVisible(false);
+                
+                
                 System.out.println("Es Socio");
             }
             if (tipoUsuario != 1 && tipoUsuario != 2) {
@@ -220,9 +228,10 @@ public class IngresoBD extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresoBD().setVisible(true);
+                //
             }
         });
+        new IngresoBD().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -235,8 +244,6 @@ public class IngresoBD extends javax.swing.JFrame {
     private javax.swing.JPasswordField contrasena_text;
     private javax.swing.JTextField usuario_text;
     // End of variables declaration//GEN-END:variables
-Conectardb objconectardb = new Conectardb();
-Connection objConnection = objconectardb.conexiondb();
-ventanaPrincipal objventPrinc = new ventanaPrincipal();
+
 
 }
