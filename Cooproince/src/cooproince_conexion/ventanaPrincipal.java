@@ -49,6 +49,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         itemEstatus = new javax.swing.JMenuItem();
         menuOperacionesAni = new javax.swing.JMenu();
         itemAnimales = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         itemPerfiles = new javax.swing.JMenuItem();
         menuInformes = new javax.swing.JMenu();
         menuProduccionInf = new javax.swing.JMenu();
@@ -214,13 +215,21 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         menuOperacionesAni.setText("Operaciones");
 
-        itemAnimales.setText("Animales");
+        itemAnimales.setText("Grupos");
         itemAnimales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemAnimalesActionPerformed(evt);
             }
         });
         menuOperacionesAni.add(itemAnimales);
+
+        jMenuItem1.setText("Individuos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuOperacionesAni.add(jMenuItem1);
 
         itemPerfiles.setText("Perfiles");
         itemPerfiles.addActionListener(new java.awt.event.ActionListener() {
@@ -490,6 +499,14 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_itemPerfilusuarioActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        MenuAnimalesIndi mtp;
+        mtp = new MenuAnimalesIndi();
+        Paintern.add(mtp);
+        mtp.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -555,6 +572,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemTipousuario;
     private javax.swing.JMenuItem itemUsuario;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu menuAdministracion;
     private javax.swing.JMenu menuAlmacen;
