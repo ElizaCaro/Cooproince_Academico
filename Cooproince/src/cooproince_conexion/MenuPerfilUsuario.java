@@ -25,8 +25,12 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
     /**
      * Creates new form Menuusuario
      */
-    public MenuPerfilUsuario() {
+    public String usuario;
+    public int idusuario;
+
+    public MenuPerfilUsuario(int val) {
         initComponents();
+        idusuario = val;
         String sql = "select * from ROL";
         String vec[] = new String[2];
 
@@ -44,30 +48,8 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
             Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        mostrar("");
-    }
-
-    void mostrar(String valor) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Codigo");
-        model.addColumn("Cedula");
-        model.addColumn("Primer Nombre");
-        model.addColumn("Segundo Nombre");
-        model.addColumn("Primer Apellido");
-        model.addColumn("Segundo apellido");
-        model.addColumn("Email");
-        model.addColumn("Usuario");
-        model.addColumn("Crear usuario");
-        model.addColumn("Crear config");
-        model.addColumn("Rol");
-        String[] vec = new String[11];
-        String sql = "";
-
-        if (valor.equals("")) {
-            sql = "select * from USUARIO";
-        } else {
-            sql = "select * from USUARIO where cedula = '" + valor.trim() + "'";
-        }
+        sql = "select * from USUARIO  where id_usuario = " + String.valueOf(val) + "";
+        vec = new String[12];
 
         try {
             Statement est = objConnection.createStatement();
@@ -82,10 +64,36 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
                 vec[5] = rel.getString(6);
                 vec[6] = rel.getString(7);
                 vec[7] = rel.getString(8);
-                vec[8] = rel.getString(10);
-                vec[9] = rel.getString(11);
-                vec[10] = rel.getString(12);
-                model.addRow(vec);
+                vec[8] = rel.getString(9);
+                vec[9] = rel.getString(10);
+                vec[10] = rel.getString(11);
+                vec[11] = rel.getString(12);
+
+                cod.setText(vec[0]);
+                cedula.setText(vec[1]);
+                primernombre.setText(vec[2]);
+                segundonombre.setText(vec[3]);
+                primerapellido.setText(vec[4]);
+                segundoapellido.setText(vec[5]);
+                email.setText(vec[6]);
+                jTextField1.setText(vec[8]);
+
+                int a = Integer.parseInt(vec[9]);
+                if (a == 1) {
+                    jCheckBox1.setSelected(true);
+                } else {
+                    jCheckBox1.setSelected(false);
+                }
+
+                a = Integer.parseInt(vec[10]);
+                if (a == 1) {
+                    jCheckBox2.setSelected(true);
+                } else {
+                    jCheckBox2.setSelected(false);
+                }
+
+                a = Integer.parseInt(vec[1]);
+                rol.addItem(a + 1);
             }
 
         } catch (SQLException ex) {
@@ -122,10 +130,11 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
         email = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         rol = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         Editar.setText("Editar");
         Editar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,13 +212,6 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
 
         jCheckBox2.setText("Crear Registros");
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +220,10 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Rol:");
+
+        jTextField1.setColumns(10);
+
+        jLabel8.setText("Contraseña");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,9 +236,7 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(segundoapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,11 +271,21 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
                                     .addComponent(jCheckBox1)
                                     .addComponent(jCheckBox2)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(111, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jLabel7))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 99, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,14 +321,17 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(primerapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(primerapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(segundoapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(segundoapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -324,14 +341,14 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         pack();
@@ -353,125 +370,8 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_segundonombreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        if (primernombre.getText().isEmpty() == false) {
-            try {
-                // TODO add your handling code here:
-                System.out.println("entro");
-                PreparedStatement pat = objConnection.prepareStatement("Insert  into USUARIO values(?,?,?,?,?,?,?,?,?,?,?,?)");
-                pat.setInt(1, 0);
-                pat.setString(2, cedula.getText());
-                pat.setString(3, primernombre.getText());
-                pat.setString(4, segundonombre.getText());
-                pat.setString(5, primerapellido.getText());
-                pat.setString(6, segundoapellido.getText());
-                pat.setString(7, email.getText());
-                String usuario = primernombre.getText() + "." + primerapellido.getText();
-                pat.setString(8, usuario);
-                pat.setString(9, "12345");
-
-                boolean val = jCheckBox1.isSelected();
-                if (val) {
-                    pat.setString(10, "1");
-                } else {
-                    pat.setString(10, "0");
-                }
-
-                val = jCheckBox2.isSelected();
-                if (val) {
-                    pat.setString(11, "1");
-                } else {
-                    pat.setString(11, "0");
-
-                }
-                int aux = rol.getSelectedIndex();
-                aux++;
-                pat.setString(12, String.valueOf(aux));
-                pat.executeUpdate();
-                mostrar("");
-                primernombre.setText("");
-                segundonombre.setText("");
-                cedula.setText("");
-                primerapellido.setText("");
-                segundoapellido.setText("");
-                email.setText("");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            System.out.println("no se puede");
-        }
-
-        mostrar("");
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
-        int row=0;
-        if (row >= 0) {
-
-            String[] vec = new String[6];
-            String sql = "";
-            String valor ="";
-            System.out.println(valor);
-            vec = new String[11];
-
-            if (valor.equals("")) {
-                sql = "select * from USUARIO";
-            } else {
-                sql = "select * from USUARIO where cedula = '" + valor.trim() + "'";
-            }
-
-            try {
-                Statement est = objConnection.createStatement();
-                ResultSet rel = est.executeQuery(sql);
-
-                while (rel.next()) {
-                    vec[0] = rel.getString(1);
-                    vec[1] = rel.getString(2);
-                    vec[2] = rel.getString(3);
-                    vec[3] = rel.getString(4);
-                    vec[4] = rel.getString(5);
-                    vec[5] = rel.getString(6);
-                    vec[6] = rel.getString(7);
-                    vec[7] = rel.getString(8);
-                    vec[8] = rel.getString(10);
-                    vec[9] = rel.getString(11);
-                    vec[10] = rel.getString(12);
-                }
-                cod.setText(vec[0]);
-                cedula.setText(vec[1]);
-                primernombre.setText(vec[2]);
-                segundonombre.setText(vec[3]);
-                primerapellido.setText(vec[4]);
-                segundoapellido.setText(vec[5]);
-                email.setText(vec[6]);
-
-                if (vec[8].contentEquals("1")) {
-                    jCheckBox1.setSelected(true);
-                }
-
-                if (vec[9].contentEquals("1")) {
-                    jCheckBox1.setSelected(true);
-                }
-
-                int a = Integer.parseInt(vec[10]);
-                a--;
-                rol.setSelectedIndex(a);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
-        }
-
 
     }//GEN-LAST:event_EditarActionPerformed
 
@@ -483,14 +383,14 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
                 String sql = "Update USUARIO  set cedula = '" + cedula.getText().trim() + "' where id_usuario = '" + cod.getText() + "'";
                 PreparedStatement pat = objConnection.prepareStatement(sql);
                 pat.executeUpdate();
-                
+
                 sql = "Update USUARIO  set primer_apellido = '" + primerapellido.getText().trim() + "' where id_usuario = '" + cod.getText() + "'";
                 pat = objConnection.prepareStatement(sql);
                 pat.executeUpdate();
                 sql = "Update USUARIO  set segundo_apellido = '" + segundoapellido.getText().trim() + "' where id_usuario = '" + cod.getText() + "'";
                 pat = objConnection.prepareStatement(sql);
                 pat.executeUpdate();
-                
+
                 sql = "Update USUARIO  set primer_nombre = '" + primernombre.getText().trim() + "' where id_usuario = '" + cod.getText() + "'";
                 pat = objConnection.prepareStatement(sql);
                 pat.executeUpdate();
@@ -501,8 +401,8 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
                 sql = "Update USUARIO  set email = '" + email.getText().trim() + "' where id_usuario = '" + cod.getText() + "'";
                 pat = objConnection.prepareStatement(sql);
                 pat.executeUpdate();
-                
-                   boolean val = jCheckBox1.isSelected();
+
+                boolean val = jCheckBox1.isSelected();
                 if (val) {
                     sql = "Update USUARIO  set crear_usuario = '" + "1" + "' where id_usuario = '" + cod.getText() + "'";
                 } else {
@@ -530,18 +430,57 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
                 pat = objConnection.prepareStatement(sql);
                 pat.executeUpdate();
 
+                sql = "select * from USUARIO  where id_usuario = " + String.valueOf(idusuario) + "";
+                String vec[] = new String[12];
 
-             
-                
-                mostrar("");
-                cod.setText("");
-                primernombre.setText("");
-                segundonombre.setText("");
-                cedula.setText("");
-                primerapellido.setText("");
-                segundoapellido.setText("");
-                email.setText("");
+                try {
+                    Statement est = objConnection.createStatement();
+                    ResultSet rel = est.executeQuery(sql);
 
+                    while (rel.next()) {
+                        vec[0] = rel.getString(1);
+                        vec[1] = rel.getString(2);
+                        vec[2] = rel.getString(3);
+                        vec[3] = rel.getString(4);
+                        vec[4] = rel.getString(5);
+                        vec[5] = rel.getString(6);
+                        vec[6] = rel.getString(7);
+                        vec[7] = rel.getString(8);
+                        vec[8] = rel.getString(9);
+                        vec[9] = rel.getString(10);
+                        vec[10] = rel.getString(11);
+                        vec[11] = rel.getString(12);
+
+                        cod.setText(vec[0]);
+                        cedula.setText(vec[1]);
+                        primernombre.setText(vec[2]);
+                        segundonombre.setText(vec[3]);
+                        primerapellido.setText(vec[4]);
+                        segundoapellido.setText(vec[5]);
+                        email.setText(vec[6]);
+                        jTextField1.setText(vec[8]);
+
+                        int a = Integer.parseInt(vec[9]);
+                        if (a == 1) {
+                            jCheckBox1.setSelected(true);
+                        } else {
+                            jCheckBox1.setSelected(false);
+                        }
+
+                        a = Integer.parseInt(vec[10]);
+                        if (a == 1) {
+                            jCheckBox2.setSelected(true);
+                        } else {
+                            jCheckBox2.setSelected(false);
+                        }
+
+                        a = Integer.parseInt(vec[1]);
+                        rol.addItem(a + 1);
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             } catch (SQLException ex) {
                 Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
@@ -556,22 +495,6 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-         int row = 0;
-        if (row >= 0) {
-            String cod ="";
-            String sql = "Delete from USUARIO where id_usuario = '" + cod + "'";
-            PreparedStatement pat;
-            try {
-                pat = objConnection.prepareStatement(sql);
-                pat.executeUpdate();
-                mostrar("");
-            } catch (SQLException ex) {
-                Logger.getLogger(MenuTipoproducion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "No selecciono  una fila");
-        }
 
     }//GEN-LAST:event_EliminarActionPerformed
 
@@ -585,7 +508,6 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField cedula;
     private javax.swing.JTextField cod;
     private javax.swing.JTextField email;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
@@ -596,8 +518,10 @@ public class MenuPerfilUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField primerapellido;
     private javax.swing.JTextField primernombre;
     private javax.swing.JComboBox rol;
