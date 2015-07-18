@@ -328,6 +328,8 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
             pst.setInt(2, jComboBox1.getSelectedIndex() + 1);
             pst.setInt(3, jComboBox2.getSelectedIndex() + 1);
             pst.setFloat(4, Float.parseFloat(jTextField2.getText()));
+           
+            //------/
             java.util.Date var = new java.util.Date();
             Date date;
             date = new Date(var.getTime());
@@ -340,6 +342,9 @@ public class Opconsultaalm extends javax.swing.JInternalFrame {
             java.sql.Time tim;
             tim = new java.sql.Time(hours, minutes, seconds);
             pst.setTime(6, tim);
+            
+            
+            
             pst.setInt(7, jComboBox3.getSelectedIndex());
             jComboBox1.setSelectedIndex(0);
             jComboBox2.setSelectedIndex(0);
