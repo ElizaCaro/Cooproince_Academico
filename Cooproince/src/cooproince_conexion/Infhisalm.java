@@ -7,11 +7,6 @@
 package cooproince_conexion;
 
 import java.sql.Connection;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -98,13 +93,6 @@ public class Infhisalm extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        try{
-          JasperReport reporte =JasperCompileManager.compileReport("reportesproducto");
-          JasperPrint print = JasperFillManager.fillReport(reporte, null,this.objConexion);
-          JasperViewer.viewReport(print);
-        }catch(Exception e){
-        
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
