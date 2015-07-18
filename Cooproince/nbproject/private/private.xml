@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Esneldy/Documents/GitHub/Cooproince_Academico/Cooproince/src/cooproince_conexion/Infhisalm.java</file>
             <file>file:/C:/Users/Esneldy/Documents/GitHub/Cooproince_Academico/Cooproince/src/cooproince_conexion/MenuEstatus.java</file>
             <file>file:/C:/Users/Esneldy/Documents/GitHub/Cooproince_Academico/Cooproince/src/cooproince_conexion/MenuRazas.java</file>
+=======
+            <file>file:/home/felipe/Cooproince_Academico/Cooproince/src/cooproince_conexion/MenuProductos.java</file>
+            <file>file:/home/felipe/Cooproince_Academico/Cooproince/src/cooproince_conexion/ventanaPrincipal.java</file>
+            <file>file:/home/felipe/Cooproince_Academico/Cooproince/src/cooproince_conexion/IngresoBD.java</file>
+>>>>>>> c40098c231aff1460862e257ae0725543c2812ad
         </group>
     </open-files>
 </project-private>
