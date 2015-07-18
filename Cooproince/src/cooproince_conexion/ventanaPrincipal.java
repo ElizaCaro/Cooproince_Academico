@@ -482,6 +482,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
     private void itemPerfilusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPerfilusuarioActionPerformed
         // TODO add your handling code here:
+       MenuPerfilUsuario mtp;
+       mtp = new MenuPerfilUsuario(idusuario);
+       
+       Paintern.add(mtp);
+       mtp.show();
+        
     }//GEN-LAST:event_itemPerfilusuarioActionPerformed
 
     /**
